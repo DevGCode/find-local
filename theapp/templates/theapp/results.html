@@ -1,0 +1,81 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<section class="blog">
+    <div class="container">
+      <header>
+        <h2 class="has-lines"><span class="text-primary">What</span>We Found:</h2>
+      </header>
+      <div class="row">
+
+<h1>Category</h1>
+
+         <div class="col-lg-12">
+          <div class="post">
+            <div class="image"><img src="{{ category.thumbnail.url }}" alt="..."></div>
+            <div class="info d-flex align-items-end">
+              <div class="content">
+                  <h3>{{ category.title }}</h3></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<h1>Location</h1>
+
+<div class="col-lg-12">
+    <div class="post">
+      <div class="image"><img src="{{ location.thumbnail.url }}" alt="..."></div>
+      <div class="info d-flex align-items-end">
+        <div class="content">
+            <h3>{{ location.city }}</h3></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="search-bar">
+    <form action="{% url 'location-search' %}" method="POST">
+       {% csrf_token %}
+      <div class="row">
+
+        <div class="form-group col-lg-5">
+          <select name="catid" title="What" class="listing-categories" required>
+            {% for category in nav_categories %}
+            <option value="{{category.id}}">{{ category.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group col-lg-5">
+          <!-- <input type="text" id="query" placeholder="Where" id="location">
+          <label for="location" class="location"><i onclick="lookupLocation();" class="fa fa-dot-circle-o"></i></label> -->
+          <select name="location" title="Where" class="listing-categories" required>
+            {% for location in business_locations %}
+            <option value="{{location.id}}">{{ location.state }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+
+        <div class="form-group col-lg-2">
+          <input type="submit" value="Search" class="submit">
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="stylesheet" href="{% static 'crm/main.css' %}" />
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="{% static 'website/css/font-awesome.min.css' %}">
+    <!-- Custom Font Icons CSS-->
+    <link rel="stylesheet" href="{% static 'website/css/custom-fonticons.css' %}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>User Dashboard</title>
+
+    <style></style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand mt-4 mb-4">
+                    
+                <img src="{% static 'website/img/logo-white.png' %}" alt="">
+                </li>
+                <li>
+                    <a href="{% url 'user-profile' %}"><i class="fa fa-tachometer"></i> Dashboard</a>
+                </li>
+                <!-- <li>
+                    <a href="{% url 'user-listings' %}"><i class="fa fa-list"></i> Listings</a>
+                </li> -->
+                <!-- <li>
+                    <a href="{% url 'user-reports' %}"><i class="fa fa-paper"></i> Reports</a>
+                </li> -->
+                <li>
+                    <a href="{% url 'user-billing' %}"><i class="fa fa-dollar"></i> Billing</a>
+                </li>
+                <li>
+                    <a href="{% url 'user-support' %}"><i class="fa fa-support"></i> Support</a>
+                </li>
+                <li>
+                    <a href="{% url 'signout' %}"><i class="fa fa-sign-out"></i> Sign Out</a>
+                </li>
+                <hr>
+                <p class="text-light ml-4">Welcome, {{ request.user.username }}!</p>
+
+            </ul>
+        </div>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        {% block content %} {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

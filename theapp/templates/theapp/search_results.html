@@ -1,0 +1,69 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<section class="blog">
+    <div class="container">
+      <header>
+        <h2 class="has-lines"><span class="text-primary">What</span>We Found:</h2>
+      </header>
+      <div class="row">
+        <!-- Post-->
+        {% for post in queryset %}
+        <div class="col-lg-4">
+          <div class="post">
+            <div class="image"><img src="{{ post.thumbnail.url }}" alt="..."></div>
+            <div class="info d-flex align-items-end">
+              <div class="content">
+                <div class="post-meta">{{ post.timestamp }}</div><a href="{% url 'post-detail' post.pk %}">
+                  <h3>{{ post.title }}</h3></a>
+                <p>{{ post.overview|linebreaks|truncatechars:'150' }}</p><a href="{% url 'post-detail' post.pk %}" class="has-lines read-more">Read More</a>
+              </div>
+            </div>
+            <!-- <a href="#">
+              <div class="badge badge-rounded text-uppercase">{{ post.category.title }}</div></a> -->
+          </div>
+        </div>
+        {% endfor %}
+      </div><a href="{% url 'post-list' %}" class="visit-blog btn btn-primary has-shadow has-wide-padding">Visit Blog</a>
+    </div>
+  </section>
+
+
+
+  <div class="search-bar">
+    <form action="{% url 'location-search' %}" method="POST">
+       {% csrf_token %}
+      <div class="row">
+
+        <div class="form-group col-lg-5">
+          <select name="catid" title="What" class="listing-categories" required>
+            {% for category in nav_categories %}
+            <option value="{{category.id}}">{{ category.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group col-lg-5">
+          <!-- <input type="text" id="query" placeholder="Where" id="location">
+          <label for="location" class="location"><i onclick="lookupLocation();" class="fa fa-dot-circle-o"></i></label> -->
+          <select name="location" title="Where" class="listing-categories" required>
+            {% for location in business_locations %}
+            <option value="{{location.id}}">{{ location.state }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+
+        <div class="form-group col-lg-2">
+          <input type="submit" value="Search" class="submit">
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
+{% endblock %}

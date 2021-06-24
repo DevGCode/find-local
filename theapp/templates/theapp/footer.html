@@ -1,0 +1,50 @@
+{% load static %}
+
+<footer class="main-footer">
+    <div class="container">
+      <div class="row">
+        <div class="about col-md-4">
+          <div class="logo"><img src="{% static 'website/img/logo-footer.png' %}" alt="..."></div>
+
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.</p>
+
+
+        </div>
+  <div class="site-links col-md-4">
+          <h3>Navigation</h3>
+          <div class="menus d-flex">
+            <ul class="list-unstyled">
+              <li> <a href="{% url 'home' %}">Home</a></li>
+              <li> <a href="{% url 'prices' %}">Add your Listing</a></li>
+              <li> <a href="{% url 'post-list' %}">Read our Blog</a></li>
+            </ul>
+            <ul class="list-unstyled">
+              <li> <a href="{% url 'privacy' %}">Privacy </a></li>
+              <li> <a href="{% url 'terms' %}">Terms</a></li>
+              <li> <a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="contact col-md-4">
+            <h3>Contact  us</h3>
+       <div class="info">
+           <p>53 Broadway, Broklyn, NY 11249</p>
+           <p>Phone: (800) 471-5114</p>
+
+
+            <p>Email: <a href="mailto:info@findlocal.com">Info@FindLocal.com</a></p>
+            <ul class="social-menu lisy-inline">
+              <li class="list-inline-item"><a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook">                        </i></a></li>
+              <li class="list-inline-item"><a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter">                        </i></a></li>
+              <li class="list-inline-item"><a href="#" target="_blank" title="Pinterest"><i class="fa fa-pinterest">                        </i></a></li>
+              <li class="list-inline-item"><a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram">                        </i></a></li>
+              <li class="list-inline-item"><a href="#" target="_blank" title="Vimeo"><i class="fa fa-vimeo">                        </i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyrights text-center">
+      <p>&copy; 2021 <span class="text-primary"> FindLocal.com</span> </p> <br> <p><a href="{% url 'privacy' %}">Privacy</a> | <a href="{% url 'terms' %}">Terms</a> | <a href="{% url 'spam' %}">Anti Spam</a></p>
+    </div>
+  </footer>

@@ -1,0 +1,47 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<body class="login-body">
+    <div class="container login-container "">
+	<div class=" row text-center">
+        <div class="col-xl-6 col-md-8 col-sm-8 mx-auto">
+            <div class="login-form">
+                {% for message in messages %}
+                <div class="alert alert-info text-center" role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
+                <h3 class="display-4 mt-5">Login</h3>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-control" placeholder="Username *" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password *" required />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn-outline-primary w-100" value="Login" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+<p class="text-center mb-5 mt-3">
+    Not a member yet? <a href="{% url 'signup' %}">Sign up</a>
+</p>
+
+</body>
+
+</html>
+
+
+{% endblock content %}

@@ -1,0 +1,102 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+<div class="listing-categories-page">
+  <!-- Hero Section-->
+  <section class="hero hero-inverse">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active">{{ category.title }}</li>
+      </ul>
+      <h1>{{ category.title }}</h1>
+      <p class="lead">Results for {{ category.title }} listings</p>
+      <!-- <div class="subcategories">
+        <h3>City Quarters            </h3>
+        <ul class="nav nav-pills-template">
+          <li class="nav-item"><a href="#" class="nav-link active">Mount Vernon</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Johnstown</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Jamestown</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Hudson</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Kingston</a></li>
+        </ul>
+      </div> -->
+    </div>
+  </section>
+  <section class="no-padding-top padding-small">
+    <!-- <div class="block has-shadow">
+      <div id="category-map" class="map-holder">
+
+      </div>
+    </div> -->
+    <div class="container">
+      {% include 'main-search.html' %}
+      <!-- Don't say plural if it's just one result -->
+      {% if listing_count > 1 %}
+      <p class="lead text-muted block text-center"><strong>{{ listing_count }}</strong> results found</p>
+      {% else %}
+      <p class="lead text-muted block text-center"><strong>{{ listing_count }}</strong> result found</p>
+      {% endif %}
+      <div class="row block">
+        {% for listing in listings %}
+        <!-- start item-->
+        <div class="col-lg-4">
+          <div class="item listing-item" style="box-shadow: 10px 5px 5px #ddd;">
+            <div class="item-inner">
+              <div class="image"><img src="{{ listing.imageURL }}" alt="..." class="img-fluid"></div>
+              <div class="info d-flex align-items-end justify-content-between">
+                <div><a href="#" class="badge-transparent">{{ listing.category.title }}</a>
+                  <h3><a href="{% url 'listing-detail' listing.id %}">  {{ listing.title }}</a></h3>
+                  <p class="address text-light">{{ listing.city }}</p>
+                </div>
+                <!-- <div class="favorite"><i class="icon-heart"> </i></div> -->
+              </div>
+            </div>
+            <div class="rate-box d-flex align-items-center">
+              <!-- <ul class="rate list-inline">
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star text-gray"></i></li>
+              </ul><span>(20 Reviews)</span> -->
+            </div>
+            <div class="description">
+              <p>{{ listing.tagline|truncatewords:10 }} </p><a class="text-primary" href="{% url 'listing-detail' listing.id %}">Read more</a>
+            </div>
+          </div>
+        </div>
+        <!-- end item -->
+        {% endfor %}
+      </div>
+      <!-- Pagination -->
+      <!-- <nav aria-label="Page navigation example">
+        <ul class="pagination pagination-template d-flex justify-content-center">
+          <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+          <li class="page-item"><a href="#" class="page-link active">1</a></li>
+          <li class="page-item"><a href="#" class="page-link">2</a></li>
+          <li class="page-item"><a href="#" class="page-link">3</a></li>
+          <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+        </ul>
+      </nav> -->
+    </div>
+  </section>
+</div>
+
+
+
+<!-- <script>
+ function lookupLocation(){
+  $.getJSON('https://geolocation-db.com/json/c0593a60-4159-11eb-80cd-db15f946225f', function(data) {
+    $('#location').attr('placeholder', data.city);
+    // window.alert(locationData);
+  });
+ }
+</script> -->
+
+{% endblock content %}

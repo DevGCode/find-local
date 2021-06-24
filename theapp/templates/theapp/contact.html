@@ -1,0 +1,150 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+    <!-- Hero Section-->
+    <section id="contactPhoto" class="hero">
+      <div class="container">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active">Contact</li>
+        </ul>
+        <h1>How to Get in touch</h1>
+          <p class="text-hero">
+            Discover your local area & how to find the best businesses
+        </p>
+      </div>
+    </section>
+      <section class="padding-small">
+      <div class="container">
+        <div class="row">
+
+
+          <div class="col-md-4">
+            <div class="contact-icon">
+              <div class="icon icon-email"></div>
+            </div>
+            <h3>Email us</h3>
+            <p>Or send us a message below.</p>
+            <ul class="list-style-none">
+              <li><a href="mailto:">info@123relo.com</a></li>
+              <li><a href="mailto:">support@123relo.com</a></li>
+            </ul>
+          </div>
+
+
+          <div class="col-md-4">
+            <div class="contact-icon">
+              <div class="icon icon-support"></div>
+            </div>
+            <h3>Call us</h3>
+            <!-- <p>This number is toll free if calling from Great Britain otherwise we advise you to use the electronic form of communication.</p> -->
+            <p><strong><i class="fa fa-phone"></i> <a href="tel:+18004715114"> 800-471-5114</a></strong></p>
+          </div>
+
+
+          <div class="col-md-4">
+            <div class="contact-icon">
+              <div class="icon icon-chat"></div>
+            </div>
+            <h3>Live Chat</h3>
+            <p>Use the live chat to speak with a member of our team.</p>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+    <section class="padding-small bg-gray">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94235.34099759265!2d-123.41099894314078!3d42.430833838953475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54c57a231cfb16a5%3A0xcba25ba08e5112d4!2sGrants%20Pass%2C%20OR!5e0!3m2!1sen!2sus!4v1612502867441!5m2!1sen!2sus" width="450" height="410" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+          </div>
+          <div class="col-md-5">
+            <h2 class="text-center mb-3">Send us a message</h2>
+            <form style="background-color:#fff; padding:8%;" action="{% url 'contact' %}" method="POST" role="form" class="custom-form form">
+              {% csrf_token %}
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                 </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                 </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="url" id="subject" placeholder="Your Website URL" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+               </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Write your message here" placeholder="Write your message here"></textarea>
+               </div>
+               <div class="text-center">
+               <button type="submit" class="btncl btn-outline-primary">Send message</button>
+               </div>
+              </form>
+
+
+<!--
+            <form style="background-color:#fff; padding:8%;" id="contact-form" method="post" action="contact.php" class="custom-form form">
+              <div class="controls">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="name" class="form-label">Your firstname *</label>
+                      <input type="text" name="name" id="name" placeholder="Enter your firstname" required="required" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="surname" class="form-label">Your lastname *</label>
+                      <input type="text" name="surname" id="surname" placeholder="Enter your  lastname" required="required" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="form-label">Your email *</label>
+                  <input type="email" name="email" id="email" placeholder="Enter your  email" required="required" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="message" class="form-label">Your message for us *</label>
+                  <textarea rows="4" name="message" id="message" placeholder="Enter your message" required="required" class="form-control"></textarea>
+                </div>
+                <button type="submit" ass="btncl btn-outline-primary">Send message</button>
+              </div>
+            </form> -->
+
+
+            <!-- <div class="social">
+              <ul class="list-inline">
+                <li class="list-inline-item"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank"><i class="fa fa-behance"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank"><i class="fa fa-pinterest">                                             </i></a></li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+{% if message %}
+<script>
+ myfunc();
+
+  function myfunc(){
+    window.alert('Thank you {{ message_name|title }} for your interest in 123 Relocate! We will be in touch shortly.')
+   }
+</script>
+{% endif %}
+
+
+{% endblock content %}

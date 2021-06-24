@@ -1,0 +1,17 @@
+{% extends 'crm/main.html' %}
+{% block content %}
+
+
+<div class="row">
+    <div class="col-lg-6">
+      <div class="box-element form-group center-form" id="form-wrapper">
+        <form method="POST">
+          {% csrf_token %} {{ form.as_p }}
+          <button class="btn btn-danger">Update Your Listing</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  {% endblock content %}

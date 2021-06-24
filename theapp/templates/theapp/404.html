@@ -1,0 +1,17 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Hero Section-->
+    <section id="four_o_four" class="error404 d-flex align-items-center">
+      <div class="container">
+        <h1 class="mb-5">Rats, we couldn't find that page...</h1>
+        <p class="text-hero mb-5">
+          But that's okay!
+        </p>
+        <p><a href="{% url 'home' %}" class="btn btn-outline-white"> <i class="fa fa-home mr-2"></i>Start fresh at the Homepage</a></p>
+      </div>
+    </section>
+
+    {% endblock content %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+{% include "theapp/head.html" %}
+
+<body>
+
+    {% include 'theapp/header.html' %}
+
+
+    {% block content %}
+    {% endblock content %}
+
+    {% include 'theapp/footer.html' %}
+    {% include 'theapp/scripts.html' %}
+
+</body>
+
+</html>

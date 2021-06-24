@@ -1,0 +1,147 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Hero Section-->
+    <section id="blogHero" class="hero">
+      <div class="container">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active">Blog</li>
+        </ul>
+        {% if cat_posts %}
+        <h1>Results for "{{ category.title }}"</h1>
+        <p class="text-hero">Discover your local area &amp; how to find the best businesses</p>
+        {% else %}
+        <h1>Sorry, we couldn't find any results for "{{ category.title }}"</h1>
+        <p class="text-hero">Feel free to try your search again.</p>
+        {% endif %}
+      </div>
+    </section>
+    <div class="container">
+      <div class="row">
+        <main class="col-lg-8">
+          <!-- Blog Post-->
+          {% if cat_posts  %}
+          {% for post in cat_posts %}
+            <div class="blog-post">
+              <div class="post-header"><img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid post-thumbnail">
+                <div class="content">
+                  <div class="badge badge-rounded text-uppercase">{{ post.category.title }}</div>
+                  <!-- <a href="#">
+                     <div class="author d-flex align-items-center">
+                      <div class="image"><img src="img/avatar.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                      <div class="name"><span class="text-uppercase">Article By</span><strong>Adam Shawky</strong></div>
+                    </div>
+                  </a> -->
+                </div>
+              </div>
+              <div class="post-content"><a href="#">
+                  <h3>{{ post.title }}</h3></a>
+                <div class="post-meta">{{ post.timestamp }}</div>
+                <p class="text-muted">{{ post.overview|truncatechars:"180" }}</p><a href="{% url 'post-detail' post.pk %}" class="has-lines read-more">Read More</a>
+              </div>
+            </div>
+          {% endfor %}
+          {% else %}
+          <h2 class="text-center mb-4">Here are all of the posts:</h2>
+           <!-- Blog Post-->
+           {% for post in posts %}
+           <div class="blog-post">
+             <div class="post-header"><img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid post-thumbnail">
+               <div class="content">
+                 <div class="badge badge-rounded text-uppercase">{{ post.category.title }}</div>
+                 <!-- <a href="#">
+                    <div class="author d-flex align-items-center">
+                     <div class="image"><img src="img/avatar.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                     <div class="name"><span class="text-uppercase">Article By</span><strong>Adam Shawky</strong></div>
+                   </div>
+                 </a> -->
+               </div>
+             </div>
+             <div class="post-content"><a href="#">
+                 <h3>{{ post.title }}</h3></a>
+               <div class="post-meta">{{ post.timestamp }}</div>
+               <p class="text-muted">{{ post.overview|truncatechars:"180" }}</p><a href="{% url 'post-detail' post.pk %}" class="has-lines read-more">Read More</a>
+             </div>
+           </div>
+         {% endfor %}
+         {% endif %}
+          <!-- Pagination -->
+          <!-- <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-template d-flex justify-content-center">
+              <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+              <li class="page-item"><a href="#" class="page-link active">1</a></li>
+              <li class="page-item"><a href="#" class="page-link">2</a></li>
+              <li class="page-item"><a href="#" class="page-link">3</a></li>
+              <li class="page-item"><a href="#" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+            </ul>
+          </nav> -->
+        </main>
+        <aside class="col-lg-4">
+          <!-- Widget [Search Bar Widget]-->
+          <!-- <div class="widget search">
+            <header>
+              <h3 class="has-lines"><small>Search</small>Blog Search</h3>
+            </header>
+            <form action="{% url 'search' %}" name="q" class="search-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <input type="search" placeholder="What are you looking for?">
+                <button type="submit" class="submit"><i class="icon-magnify"></i></button>
+              </div>
+            </form>
+          </div> -->
+          <!-- Widget [Latest Posts Widget] -->
+          <div class="widget latest-posts">
+            <header>
+              <h3 class="has-lines"><small>Latest Posts</small>Recent Blog Posts</h3>
+            </header>
+            <div class="blog-posts">
+                {% for post in most_recent %}
+                <a href="{% url 'post-detail' post.pk %}">
+                <div class="post d-flex align-items-center">
+                  <div class="image"><img src="{{ post.thumbnail.url }}" alt="..." class="img-fluid rounded-circle"></div>
+                  <div class="title"><strong>{{ post.title }}</strong><span class="date">{{ post.timestamp }}</span></div>
+                </div>
+                </a>
+                <a href="{% url 'post-detail' post.pk %}">
+                {% endfor %}
+
+            </div>
+          </div>
+          <!-- Widget [Categories Widget]-->
+          <div class="widget categories">
+            <header>
+              <h3 class="has-lines"><small>Categories</small>Blog Post Categories</h3>
+            </header>
+            {% for cat in categories %}
+                <div class="category justify-content-between">
+                  <a href="{% url 'post-category-detail' cat.pk %}">{{ cat.title }}</a>
+                </div>
+            {% endfor %}
+          </div>
+
+
+          {% include 'estimate.html' %}
+          <!-- Widget [Tags Cloud Widget]-->
+          <!-- <div class="widget tags">
+            <header>
+              <h3 class="has-lines"><small>Tags</small>Tags Cloud</h3>
+            </header>
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="#" class="tag">Tag 1</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">Tag 2</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">Tag 3</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">Tag 4</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">Tag 5</a></li>
+              <li class="list-inline-item"><a href="#" class="tag">Tag 6</a></li>
+            </ul>
+          </div> -->
+        </aside>
+      </div>
+    </div>
+
+
+    {% endblock content %}

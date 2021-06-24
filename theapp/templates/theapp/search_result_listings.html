@@ -1,0 +1,92 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+<div class="listing-categories-page">
+  <!-- Hero Section-->
+  <section class="hero hero-inverse">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active">Search Results</li>
+      </ul>
+      {% if location_listings %}
+      <!-- Don't say plural if it's just one result -->
+      {% if listing_count > 1 %}
+      <p class="lead text-muted block text-center"><strong>{{ location_listing_count }}</strong> results found</p>
+      {% else %}
+      <p class="lead text-muted block text-center"><strong>{{ location_listing_count }}</strong> result found</p>
+      {% endif %}
+      <div class="row block">
+        <div class="col-md-12 mb-3 text-center">
+          <h2>Listings in your selected category <b><i>and</i></b> area</h2>
+        </div>
+        {% for listing in location_listings %}
+        <!-- start item-->
+        <div class="col-lg-4">
+          <div class="item listing-item" style="box-shadow: 10px 5px 5px #ddd;">
+            <div class="item-inner">
+              <div class="image"><img src="{{ listing.imageURL }}" alt="..." class="img-fluid"></div>
+              <div class="info d-flex align-items-end justify-content-between">
+                <div><a href="#" class="badge-transparent">{{ listing.category.title }}</a>
+                  <h3><a href="{% url 'listing-detail' listing.id %}">  {{ listing.title }}</a></h3>
+                  <p class="address text-light">{{ listing.city }}</p>
+                </div>
+                <!-- <div class="favorite"><i class="icon-heart"> </i></div> -->
+              </div>
+            </div>
+            <div class="rate-box d-flex align-items-center">
+              <!-- <ul class="rate list-inline">
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star text-gray"></i></li>
+              </ul><span>(20 Reviews)</span> -->
+            </div>
+            <div class="description">
+              <p>{{ listing.tagline|truncatewords:10 }} </p><a class="text-primary" href="{% url 'listing-detail' listing.id %}">Read more</a>
+            </div>
+          </div>
+        </div>
+        <!-- end item -->
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="col-md-12 mb-3 mt-5 text-center">
+        <h2>Sorry, we didn't find anything matching your search.</h2>
+        <p>Feel free to try again</p>
+      </div>
+      {% endif %}
+      <!-- <div class="subcategories">
+        <h3>City Quarters            </h3>
+        <ul class="nav nav-pills-template">
+          <li class="nav-item"><a href="#" class="nav-link active">Mount Vernon</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Johnstown</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Jamestown</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Hudson</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">Kingston</a></li>
+        </ul>
+      </div> -->
+    </div>
+  </section>
+  <section class="no-padding-top padding-small">
+    <!-- <div class="block has-shadow">
+      <div id="category-map" class="map-holder">
+
+      </div>
+    </div> -->
+
+
+    <div class="container mb-5" style="margin-top:-5%;">
+      {% include 'main-search.html' %}
+
+ </div>
+
+
+
+{% endblock content %}

@@ -1,0 +1,357 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Hero Section-->
+    <section style="background: url('img/listing-hero-bg.jpg') no-repeat;" class="hero listing-single-hero d-flex align-items-end">
+      <div class="container">
+        <div class="content d-flex justify-content-between align-items-start flex-column flex-lg-row align-items-lg-end">
+          <div class="heading-info">
+            <div class="badge-transparent">Eat &amp; Drink</div>
+            <h1 class="verified">Rivoly Restaurant</h1>
+            <p><i class="icon-localizer"></i> 53 Broadway, Brooklyn, NY 1129</p>
+            <div class="listing-rate d-flex align-items-center">
+              <ul class="rate list-inline">
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              </ul><span class="reviewers">8 Reviews</span>
+            </div>
+          </div>
+          <div class="calltoactions"><a href=".add-review" class="btn btn-primary has-wide-padding link-scroll">Write a Review</a></div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="row">
+        <main class="col-lg-8">
+          <!-- About Listing-->
+          <div class="block about-listing">
+            <header>
+              <h3 class="has-lines"><small>About</small> About the Listing</h3>
+            </header>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <!-- Listing Location-->
+          <div class="block listing-location">
+            <header>
+              <h3 class="has-lines"><small>Location</small> Listing Location</h3>
+            </header>
+            <div class="map-holder has-shadow">
+              <div id="detail-map"></div>
+            </div>
+          </div>
+          <!-- Listing Gallery-->
+          <div class="block listing-gallery">
+            <header>
+              <h3 class="has-lines"><small>Gallery</small> Listing Gallery </h3>
+            </header>
+            <div class="gallery row">
+              <div class="mix col-lg-4 col-md-6">
+                <div class="item"><a href="img/gallery-1.jpg" data-fancybox="gallery" class="image"><img src="img/gallery-1-small.jpg" alt="..." class="img-fluid"></a></div>
+              </div>
+              <div class="mix col-lg-4 col-md-6">
+                <div class="item"><a href="img/gallery-2.jpg" data-fancybox="gallery" class="image"><img src="img/gallery-2-small.jpg" alt="..." class="img-fluid"></a></div>
+              </div>
+              <div class="mix col-lg-4 col-md-6">
+                <div class="item"><a href="img/gallery-3.jpg" data-fancybox="gallery" class="image"><img src="img/gallery-3-small.jpg" alt="..." class="img-fluid"></a></div>
+              </div>
+              <div class="mix col-lg-4 col-md-6">
+                <div class="item"><a href="img/gallery-4.jpg" data-fancybox="gallery" class="image"><img src="img/gallery-4-small.jpg" alt="..." class="img-fluid"></a></div>
+              </div>
+              <div class="mix col-lg-4 col-md-6">
+                <div class="item"><a href="img/gallery-5.jpg" data-fancybox="gallery" class="image"><img src="img/gallery-5-small.jpg" alt="..." class="img-fluid"></a></div>
+              </div>
+              <div class="mix col-lg-4 col-md-6">
+                <div class="item"><a href="img/gallery-6.jpg" data-fancybox="gallery" class="image"><img src="img/gallery-6-small.jpg" alt="..." class="img-fluid"></a></div>
+              </div>
+            </div>
+          </div>
+          <!-- Amenities-->
+          <div class="block amenities">
+            <header>
+              <h3 class="has-lines"><small>Amenities</small> Amenities</h3>
+            </header>
+            <ul class="amenities-list list-inline">
+              <li class="list-inline-item">
+                <div class="d-flex align-items-center">
+                  <div class="icon"><i class="fa fa-check"></i></div><span>Elevator</span>
+                </div>
+              </li>
+              <li class="list-inline-item">
+                <div class="d-flex align-items-center">
+                  <div class="icon"><i class="fa fa-check"></i></div><span>Vegan friendly</span>
+                </div>
+              </li>
+              <li class="list-inline-item">
+                <div class="d-flex align-items-center">
+                  <div class="icon"><i class="fa fa-check"></i></div><span>Alcohol served</span>
+                </div>
+              </li>
+              <li class="list-inline-item">
+                <div class="d-flex align-items-center">
+                  <div class="icon"><i class="fa fa-check"></i></div><span>No smoking</span>
+                </div>
+              </li>
+              <li class="list-inline-item">
+                <div class="d-flex align-items-center">
+                  <div class="icon"><i class="fa fa-check"></i></div><span>Parking spaces (paid)</span>
+                </div>
+              </li>
+              <li class="list-inline-item">
+                <div class="d-flex align-items-center">
+                  <div class="icon"><i class="fa fa-check"></i></div><span>WiFi</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- Listing Reviews            -->
+          <div class="block listing-reviews">
+            <header>
+              <h3 class="has-lines"><small>Reviews</small> Listing Reviews <span>(3)</span></h3>
+            </header>
+            <div class="comments">
+              <div class="comment">
+                <div class="comment-header d-flex justify-content-between">
+                  <div class="user d-flex align-items-center">
+                    <div class="image"><img src="img/user.svg" alt="..." class="img-fluid rounded-circle"></div>
+                    <div class="title"><strong>Jabi Hernandez</strong><span class="date">May 2016</span></div>
+                  </div>
+                  <ul class="rate list-inline">
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                  </ul>
+                </div>
+                <div class="comment-body">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+              </div>
+              <div class="comment">
+                <div class="comment-header d-flex justify-content-between">
+                  <div class="user d-flex align-items-center">
+                    <div class="image"><img src="img/user.svg" alt="..." class="img-fluid rounded-circle"></div>
+                    <div class="title"><strong>Nikolas</strong><span class="date">May 2016</span></div>
+                  </div>
+                  <ul class="rate list-inline">
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star text-gray"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star text-gray"></i></li>
+                  </ul>
+                </div>
+                <div class="comment-body">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+              </div>
+              <div class="comment">
+                <div class="comment-header d-flex justify-content-between">
+                  <div class="user d-flex align-items-center">
+                    <div class="image"><img src="img/user.svg" alt="..." class="img-fluid rounded-circle"></div>
+                    <div class="title"><strong>John Doe</strong><span class="date">May 2016</span></div>
+                  </div>
+                  <ul class="rate list-inline">
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star text-gray"></i></li>
+                  </ul>
+                </div>
+                <div class="comment-body">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Adding Review                                                     -->
+          <div class="block add-review">
+            <header>
+              <h3 class="has-lines"><small>Comment</small> Leave a Review</h3>
+            </header>
+            <div class="add-rate">
+              <p>Your rating for this listing </p>
+              <ul class="rate list-inline">
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              </ul>
+            </div>
+            <form action="#" class="commenting-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="username">Name</label>
+                  <input type="text" name="username" id="username" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="useremail">Email</label>
+                  <input type="email" name="username" id="useremail" class="form-control">
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="usercomment">Comment</label>
+                  <textarea name="usercomment" id="usercomment" class="form-control"></textarea>
+                </div>
+                <div class="form-group col-md-12">
+                  <button type="submit" class="btn btn-primary has-wide-padding has-shadow">Submit Your Review</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </main>
+        <!-- Opening Hours      -->
+        <aside class="col-lg-4">
+          <div class="widget opening-hours">
+            <header>
+              <h3 class="has-lines"><small>Open Status</small> Opening Hours </h3>
+            </header>
+            <div class="days">
+              <div class="day d-flex justify-content-between"><strong>Monday</strong><span>8:00 am - 6:00 pm </span></div>
+              <div class="day d-flex justify-content-between"><strong>Tuesday</strong><span>8:00 am - 6:00 pm                         </span></div>
+              <div class="day d-flex justify-content-between"><strong>Wednesday</strong><span>8:00 am - 6:00 pm </span></div>
+              <div class="day d-flex justify-content-between"><strong>Thursday</strong><span>8:00 am - 6:00 pm </span></div>
+              <div class="day d-flex justify-content-between"><strong>Friday</strong><span>8:00 am - 6:00 pm </span></div>
+              <div class="day d-flex justify-content-between"><strong>Saturday</strong><span>8:00 am - 6:00 pm </span></div>
+              <div class="day d-flex justify-content-between"><strong>Sunday</strong><span>Closed</span></div>
+            </div>
+          </div>
+          <!-- Contact Info-->
+          <div class="widget contact">
+            <header>
+              <h3 class="has-lines"><small>Contact</small> Drop Us a Line</h3>
+            </header>
+            <div class="info">
+              <div class="item"><a href="#"><i class="fa fa-phone"></i> (020) 123 456 789</a></div>
+              <div class="item"><a href="mailto:info@example.com"><i class="fa fa-envelope-o"></i> info@example.com</a></div>
+              <div class="item"><a href="#"><i class="fa fa-globe"></i> www.example.com</a></div>
+              <div class="item"><a href="#" target="_blank" class="facebook"><i class="fa fa-facebook-official"></i> Facebook</a></div>
+              <div class="item"><a href="#" target="_blank" class="twitter"><i class="fa fa-twitter-square"></i> Twitter</a></div>
+              <div class="item"><a href="#" target="_blank" class="instagram"><i class="fa fa-instagram"></i> Instagram</a></div>
+              <div class="item"><a href="#" target="_blank" class="google-plus"><i class="fa fa-google-plus"></i> Google+</a></div>
+              <div class="item"><a href="#" class="btn btn-primary has-shadow">Send Message</a></div>
+            </div>
+          </div>
+          <div class="bookmark-listing text-center"><a href="#" class="bookmark"> <i class="fa fa-heart"></i> Bookmark This Lisiting</a><span>79 people bookmarked this place </span></div>
+        </aside>
+      </div>
+    </div>
+    <!-- Related Listings-->
+    <div class="block related-listings no-padding-top">
+      <div class="container">
+        <header>
+          <h3 class="has-lines"><small>Related Places</small> You may also like</h3>
+        </header>
+        <div class="listings">
+          <div class="row">
+            <div class="col-lg-4">
+              <!-- Item-->
+              <div class="item listing-item">
+                <div class="item-inner">
+                  <div class="image"><img src="img/photo-latest-1.jpg" alt="..." class="img-fluid"></div>
+                  <div class="info d-flex align-items-end justify-content-between">
+                    <div><a href="#" class="badge-transparent">Eat &amp; Drink</a>
+                      <h3><a href="detail.html">  Junipoor</a></h3>
+                      <p class="address">23 July Street, Vinece</p>
+                    </div>
+                    <div class="favorite"><i class="icon-heart"> </i></div>
+                  </div>
+                </div>
+                <div class="rate-box d-flex align-items-center">
+                  <ul class="rate list-inline">
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star text-gray"></i></li>
+                  </ul><span>(20 Reviews)</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <!-- Item-->
+              <div class="item listing-item">
+                <div class="item-inner">
+                  <div class="image"><img src="img/photo-latest-2.jpg" alt="..." class="img-fluid"></div>
+                  <div class="info d-flex align-items-end justify-content-between">
+                    <div><a href="#" class="badge-transparent">See and do</a>
+                      <h3><a href="detail.html">  Musix</a></h3>
+                      <p class="address">6th Ave, Greenwich village </p>
+                    </div>
+                    <div class="favorite"><i class="icon-heart"> </i></div>
+                  </div>
+                </div>
+                <div class="rate-box d-flex align-items-center">
+                  <ul class="rate list-inline">
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star">                                       </i></li>
+                  </ul><span>(40 Reviews)</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <!-- Item-->
+              <div class="item listing-item">
+                <div class="item-inner">
+                  <div class="image"><img src="img/photo-latest-3.jpg" alt="..." class="img-fluid"></div>
+                  <div class="info d-flex align-items-end justify-content-between">
+                    <div><a href="#" class="badge-transparent">Sleep</a>
+                      <h3><a href="detail.html">  Prosure</a></h3>
+                      <p class="address">151 Karweg Place, East village</p>
+                    </div>
+                    <div class="favorite"><i class="icon-heart"> </i></div>
+                  </div>
+                </div>
+                <div class="rate-box d-flex align-items-center">
+                  <ul class="rate list-inline">
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-star text-gray"></i></li>
+                  </ul><span>(66 Reviews)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript files-->
+    <!-- <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script> -->
+    <script src="{% static 'js/front.js' %}"></script>
+    <!-- create your own Maps API Key for production use, this one is domain-restricted-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqnNXadXO6LluTYudnyKRrkaxmPeLRmxY"></script>
+    <script src="{% static 'js/map.js' %}"></script>
+    <script>
+      $(function () {
+          // coordinates for the center of the map and the marker
+          var lat = 40.732346;
+          var long = -74.0014247;
+          // if using with other than default style, change the path to the colour variant
+          // of the marker. E.g. to img/map-marker-violet.png.
+          var markerImage = 'img/map-marker-default.png';
+
+          map = createDetailMap(lat, long, markerImage);
+      });
+
+    </script>
+
+
+{% endblock content %}

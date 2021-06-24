@@ -1,0 +1,191 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+    <!-- Hero Section-->
+    <section style="background:linear-gradient(0deg, rgba(23, 21, 22, 0.562), rgba(44, 27, 38, 0.521)), url('{{ header_image.image.url }}') no-repeat;" class="hero listing-single-hero d-flex align-items-end">
+      <div class="container">
+        <div class="content d-flex justify-content-between align-items-start flex-column flex-lg-row align-items-lg-end">
+          <div class="heading-info">
+            <div class="badge-transparent">{{ listing.category.title }} </div>
+            <div style="display:block">
+
+              <!-- Check to see if the listing is claimed -->
+              {% if listing.claimed %}
+
+                <h1>{{ listing.title }} </h1> <h4><i style="font-size:30px;" class="fa fa-check-circle text-primary mr-2"></i>Claimed</h4>
+
+              {% else %}
+
+                <h1>{{ listing.title }} </h1>
+
+              {% endif %}
+
+            <br>
+            <p>{{ listing.tagline }}</p>
+            <div class="listing-rate d-flex align-items-center">
+              <!-- <ul class="rate list-inline">
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                <li class="list-inline-item"><i class="fa fa-star"></i></li>
+              </ul><span class="reviewers">8 Reviews</span> -->
+            </div>
+          </div>
+          <!-- <div class="calltoactions"><a href=".add-review" class="btn btn-primary has-wide-padding link-scroll">Write a Review</a></div> -->
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="row">
+        <main class="col-lg-8">
+          <!-- About Listing-->
+          <div class="block about-listing">
+            <header>
+              <h3 class="has-lines"><small>About</small> About {{ listing.title }}</h3>
+            </header>
+            <p>{{ listing.description|safe }}</p>
+          </div>
+
+          <!-- Listing Gallery-->
+          <div class="block listing-gallery">
+            <header>
+              <h3 class="has-lines"><small>Gallery</small> Images from {{ listing.title }} </h3>
+            </header>
+            <div class="gallery row">
+
+             {% for img in images %}
+              <div class="mix col-lg-4 col-md-6">
+                <div class="item"><a href="{{ img }}" data-fancybox="gallery" class="image"><img src="{{ img }}" alt="..." class="img-fluid"></a></div>
+              </div>
+              {% empty %}
+              empty list!
+            {% endfor %}
+
+            </div>
+          </div>
+
+
+
+
+ <!-- FAQS-->
+{% if faqs %}
+<div class="block related-listings no-padding-top">
+  <div class="container">
+      <header>
+        <h3 class="has-lines"><small>FAQ</small> Answers to Common Questions</h3>
+      </header>
+
+      <div class="panel-group" id="accordion">
+          {% for x in faqs %}
+          <div class="panel panel-default mt-5">
+              <div class="panel-heading">
+                  <h4 class="panel-title">
+                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{x.id}}">{{x.question}}</a>
+                  </h4>
+              </div>
+              <div id="collapse{{x.id}}" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                      {{x.answer}}
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+
+
+      </div>
+    </div>
+    {% endif %}
+
+
+
+
+
+
+     <!-- Related Listings-->
+    <div class="block related-listings no-padding-top">
+      <div class="container">
+        <header>
+          <h3 class="has-lines"><small>Related Places</small> You may also like</h3>
+        </header>
+        <div class="listings">
+          <div class="row">
+        {% for listing in business_listings %}
+        <!-- start item-->
+        <div class="col-lg-4">
+          <div class="item listing-item" style="box-shadow: 10px 5px 5px #ddd;">
+            <div class="item-inner">
+              <div class="image"><img src="{{ listing.imageURL }}" alt="..." class="img-fluid"></div>
+              <div class="info d-flex align-items-end justify-content-between">
+                <div><a href="#" class="badge-transparent">{{ listing.category.title }}</a>
+                  <h3><a href="{% url 'listing-detail' listing.id %}">  {{ listing.title }}</a></h3>
+                  <p class="address text-light">{{ listing.city }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="description">
+              <p>{{ listing.tagline }} </p><a class="text-primary" href="{% url 'listing-detail' listing.id %}">Read more</a>
+            </div>
+          </div>
+        </div>
+        <!-- end item -->
+        {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+        </main>
+        <!-- Opening Hours      -->
+        <aside class="col-lg-4">
+
+          {% if hours %}
+
+          <div class="widget opening-hours">
+            <header>
+              <h3 class="has-lines"><small>Hours of Operation</small> {{ listing.title }} Hours </h3>
+            </header>
+            <div class="days">
+              <div class="day d-flex justify-content-between"><strong>Monday</strong><span>{{ hours.monday_open }} - {{ hours.monday_closed }}</span></div>
+              <div class="day d-flex justify-content-between"><strong>Tuesday</strong><span>{{ hours.tuesday_open }} - {{ hours.tuesday_closed }}</span></div>
+              <div class="day d-flex justify-content-between"><strong>Wednesday</strong><span>{{ hours.wednesday_open }} - {{ hours.wednesday_closed }}</span></div>
+              <div class="day d-flex justify-content-between"><strong>Thursday</strong><span>{{ hours.thursday_open }} - {{ hours.thursday_closed }}</span></div>
+              <div class="day d-flex justify-content-between"><strong>Friday</strong><span>{{ hours.friday_open }} - {{ hours.friday_closed }}</span></div>
+              <div class="day d-flex justify-content-between"><strong>Saturday</strong><span>{{ hours.saturday_open }} - {{ hours.saturday_closed }}</span></div>
+              <div class="day d-flex justify-content-between"><strong>Sunday</strong><span>{{ hours.sunday_open }} - {{ hours.sunday_closed }}</span></div>
+            </div>
+          </div>
+          {% endif %}
+
+          <!-- Contact Info-->
+          <div class="widget contact">
+            <header>
+              <h3 class="has-lines">Contact {{ listing.title }}</h3>
+            </header>
+            <div class="info">
+              <div class="item"><a href="tel:{{ listing.phone.as_international }}"><i class="fa fa-phone"></i> {{ listing.phone }}</a></div>
+
+              <div class="item"><a href="{{ listing.url }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-globe"></i> Visit {{ listing.business_name|title }}'s Website</a></div>
+
+                  <br>
+
+
+             </div>
+          </div>
+          <!-- <div class="bookmark-listing text-center"><a href="#" class="bookmark"> <i class="fa fa-heart"></i> Bookmark This Lisiting</a><span>79 people bookmarked this place </span></div> -->
+        </aside>
+      </div>
+    </div>
+
+
+
+
+
+{% endblock content %}

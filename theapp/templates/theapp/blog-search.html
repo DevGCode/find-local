@@ -1,0 +1,13 @@
+<!-- Widget [Search Bar Widget]-->
+          <div class="widget search">
+            <header>
+              <h3 class="has-lines"><small>Search</small>Blog Search</h3>
+            </header>
+            <form action="{% url 'search' %}" name="q" class="search-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <input type="search" placeholder="What are you looking for?">
+                <button type="submit" class="submit"><i class="icon-magnify"></i></button>
+              </div>
+            </form>
+          </div>

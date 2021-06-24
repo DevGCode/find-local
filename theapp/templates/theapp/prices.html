@@ -1,0 +1,270 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Hero Section-->
+    <section id="estimatePhoto" class="hero">
+      <div class="container">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active">Add Your Listing</li>
+        </ul>
+        <h1>Select Your Plan</h1>
+        <!-- <p class="text-hero">
+
+          As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built party world. Of so am
+          he remember although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity.
+        </p> -->
+      </div>
+    </section>
+
+
+
+
+
+
+    <section id="pricing" class="pricing">
+      <div class="container" data-aos="fade-up">
+
+
+        <div class="row mb-2">
+          <p data-toggle="collapse" href="#faq-list-2" id="standardBtn" class="btn btn-primary mr-2" onclick="hideExclusivePrice()">Standard</p>
+          <p data-toggle="collapse" href="#faq-list-3" id="exclusiveBtn" class="btn disabled" onclick="hideStandardPrice()">Exclusive</p>
+        </div>
+
+
+        <!-- start pricing -->
+        <div class="row" id="initialPricing">
+          <div class="col-lg-4 col-md-6" data-aos="zoom-im" data-aos-delay="100">
+            <div class="box">
+              <h3>Free</h3>
+              <h4><sup>$</sup>0<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li class="na">Pharetra massa</li>
+                <li class="na">Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a id="standard1" href="{% url 'submit-listing' %}" class="btn-buy" onclick="buttonOne(this);">Continue</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box featured" style="background-color:#D9251D;">
+              <h3>Business</h3>
+              <h4><sup>$</sup>19<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li>Pharetra massa</li>
+                <li class="na">Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a id="standard2" href="{% url 'submit-listing' %}" class="btn-buy" onclick="buttonOne(this);">Continue</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+              <h3>Developer</h3>
+              <h4><sup>$</sup>29<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li>Pharetra massa</li>
+                <li>Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a id="standard3" href="{% url 'submit-listing' %}" class="btn-buy" onclick="buttonOne(this);">Continue</a>
+              </div>
+            </div>
+          </div>
+        </div>
+          <!-- end pricing -->
+
+
+
+
+          <div class="faq-list">
+
+            <div id="faq-list-2" class="collapse" data-parent=".faq-list">
+              <!-- start pricing -->
+              <div class="row">
+              <div class="col-lg-4 col-md-6" data-aos="zoom-im" data-aos-delay="100">
+                <div class="box">
+                  <h3>Free</h3>
+                  <h4><sup>$</sup>0<span> / month</span></h4>
+                  <ul>
+                    <li>Aida dere</li>
+                    <li>Nec feugiat nisl</li>
+                    <li>Nulla at volutpat dola</li>
+                    <li class="na">Pharetra massa</li>
+                    <li class="na">Massa ultricies mi</li>
+                  </ul>
+                  <div class="btn-wrap">
+                    <a id="standard1" href="{% url 'submit-listing' %}" class="btn-buy" onclick="buttonOne(this);">Continue</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
+                <div class="box featured" style="background-color:#D9251D;">
+                  <h3>Business</h3>
+                  <h4><sup>$</sup>19<span> / month</span></h4>
+                  <ul>
+                    <li>Aida dere</li>
+                    <li>Nec feugiat nisl</li>
+                    <li>Nulla at volutpat dola</li>
+                    <li>Pharetra massa</li>
+                    <li class="na">Massa ultricies mi</li>
+                  </ul>
+                  <div class="btn-wrap">
+                    <a id="standard2" href="{% url 'submit-listing' %}" class="btn-buy" onclick="buttonOne(this);">Continue</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
+                <div class="box">
+                  <h3>Developer</h3>
+                  <h4><sup>$</sup>29<span> / month</span></h4>
+                  <ul>
+                    <li>Aida dere</li>
+                    <li>Nec feugiat nisl</li>
+                    <li>Nulla at volutpat dola</li>
+                    <li>Pharetra massa</li>
+                    <li>Massa ultricies mi</li>
+                  </ul>
+                  <div class="btn-wrap">
+                    <a id="standard3" href="{% url 'submit-listing' %}" class="btn-buy" onclick="buttonOne(this);">Continue</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <!-- end pricing -->
+            </div>
+
+
+
+            <div id="faq-list-3" class="collapse" data-parent=".faq-list">
+               <!-- start pricing -->
+               <div class="row">
+                <div class="col-lg-4 col-md-6" data-aos="zoom-im" data-aos-delay="100">
+                  <div class="box">
+                    <h3>Free</h3>
+                    <h4><sup>$</sup>0<span> / month</span></h4>
+                    <ul>
+                      <li>Aida dere</li>
+                      <li>Nec feugiat nisl</li>
+                      <li>Nulla at volutpat dola</li>
+                      <li class="na">Pharetra massa</li>
+                      <li class="na">Massa ultricies mi</li>
+                    </ul>
+                    <div class="btn-wrap">
+                      <a id="exclusive1" href="{% url 'submit-listing' %}" class="btn-buy" onclick="buttonOne(this);">Continue</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
+                  <div class="box featured">
+                    <h3>Business</h3>
+                    <h4><sup>$</sup>19<span> / month</span></h4>
+                    <ul>
+                      <li>Aida dere</li>
+                      <li>Nec feugiat nisl</li>
+                      <li>Nulla at volutpat dola</li>
+                      <li>Pharetra massa</li>
+                      <li class="na">Massa ultricies mi</li>
+                    </ul>
+                    <div class="btn-wrap">
+                      <a id="exclusive2" href="{% url 'submit-listing' %}" class="btn-buy" onclick="buttonOne(this);">Continue</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
+                  <div class="box">
+                    <h3>Developer</h3>
+                    <h4><sup>$</sup>29<span> / month</span></h4>
+                    <ul>
+                      <li>Aida dere</li>
+                      <li>Nec feugiat nisl</li>
+                      <li>Nulla at volutpat dola</li>
+                      <li>Pharetra massa</li>
+                      <li>Massa ultricies mi</li>
+                    </ul>
+                    <div class="btn-wrap">
+                      <a id="exclusive3" href="{% url 'submit-listing' %}" class="btn-buy" onclick="buttonOne(this);">Continue</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <!-- end pricing -->
+            </div>
+
+
+
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Buttons and Pricing Swapper
+
+      function hideExclusivePrice(){
+              // update standard button classes
+              var exclusive = document.getElementById("exclusiveBtn");
+              exclusive.classList.remove("btn-primary");
+              exclusive.classList.add("disabled");
+              // update exclusive button classes
+              var standard = document.getElementById("standardBtn");
+              standard.classList.remove("disabled");
+              standard.classList.add("btn-primary");
+            }
+
+
+      function hideStandardPrice(){
+        // update standard button classes
+        var standard = document.getElementById("standardBtn");
+        standard.classList.remove("btn-primary");
+        standard.classList.add("disabled");
+        // update exclusive button classes
+        var exclusive = document.getElementById("exclusiveBtn");
+        exclusive.classList.remove("disabled");
+        exclusive.classList.add("btn-primary");
+        var initial = document.getElementById("initialPricing");
+        initial.remove();
+      }
+
+
+    </script>
+
+
+
+    {% if message %}
+    <script>
+     myfunc();
+
+      function myfunc(){
+        window.alert('Thank you {{ message_name|title }} for your interest in a Free Moving Estimate! We will be in touch shortly.')
+       }
+    </script>
+    {% endif %}
+
+
+    <!-- Store the button clicked in local storage -->
+    <script>
+      function buttonOne(button) {
+      localStorage.setItem('button', button.id);
+    }
+    </script>
+
+{% endblock content %}

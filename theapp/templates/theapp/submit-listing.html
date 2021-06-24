@@ -1,0 +1,318 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  .customReadonly{
+    background-color:transparent;
+    border-color:transparent;
+  }
+</style>
+
+<!-- Hero Section-->
+<section id="estimatePhoto" class="hero">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active">Submit Your Listing</li>
+      </ul>
+      <h1>Submit Your Listing</h1>
+      <!-- <p class="text-hero">
+
+        As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built party world. Of so am
+        he remember although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity.
+      </p> -->
+    </div>
+  </section>
+
+
+    <section class="top-listings">
+      <div class="container">
+        <header>
+          <h2 class="has-lines"><small>New Listing</small> Create <span class="text-primary"> Your Business Listing</span></h2>
+          <p class="lead">Fill out the form below and submit for review.</p>
+        </header>
+        <form style="padding:8%;" action="{% url 'submit-listing' %}" method="POST" role="form" class="custom-form form" enctype=multipart/form-data>
+          {% csrf_token %}
+            <div class="form-row mb-3">
+              <div class="form-group col-md-6">
+                <label for="listingTitle">Listing Title</label>
+                <input name="title" type="text" class="form-control" id="listingTitle" placeholder="Your business name" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Tagline">Tagline</label>
+                <input name="tagline" type="text" class="form-control" id="Tagline" placeholder="Your tagline" required>
+              </div>
+            </div>
+
+          <div class="form-row mb-3">
+            <!-- <div class="form-group col-md-6">
+              <label for="city">City</label>
+              <input name="city" type="text" class="form-control" id="city" placeholder="Your city" required>
+            </div> -->
+            <div class="form-group col-md-12">
+              <label for="address">Your Business Address</label>
+              <input name="address" type="text" class="form-control" id="address" placeholder="Your full address" required>
+            </div>
+          </div>
+
+
+              <div class="form-row mb-3">
+                <div class="form-group col-md-6">
+                  <label for="website">Website</label>
+                  <input name="website" type="text" class="form-control" id="website">
+                </div>
+                 <div class="form-group col-md-6">
+                  <label for="category">Category</label>
+                  <select name="category" id="Category" class="form-control" required>
+                    {% for category in nav_categories %}
+                      <option value="{{ category.id }}">{{ category.title }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+
+                  <!-- Monday -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="weekdayLabel">Monday:</p>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="mondayopen">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="mondayclosed">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Tuesday -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="weekdayLabel">Tuesday:</p>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="tuesdayopen">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="tuesdayclosed">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                  </div>
+
+
+                  <!-- Wednesday -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="weekdayLabel">Wednesday:</p>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="wednesdayopen">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="wednesdayclosed">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Thursday -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="weekdayLabel">Thursday:</p>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="thursdayopen">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="thursdayclosed">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Friday -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="weekdayLabel">Friday:</p>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="fridayopen">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="fridayclosed">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Saturday -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="weekdayLabel">Saturday:</p>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="saturdayopen">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="saturdayclosed">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Sunday -->
+                  <div class="row">
+                    <div class="col-md-4">
+                      <p class="weekdayLabel">Sunday:</p>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="sundayopen">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                    <div class="col-md-4">
+                      <select class="form-control" name="sundayclosed">
+                        <option>Closed</option>
+                        {% include 'hours.html' %}
+                      </select>
+                    </div>
+                  </div>
+
+
+            <div class="form-row mb-3 mt-3">
+                <div class="col-md-12">
+                  <label for="description">Write a longer description</label>
+                  <textarea name="description" class="form-control" id="description" rows="10" required></textarea>
+                </div>
+            </div>
+
+
+          <div class="form-row mb-3 mt-3">
+            <div class="form-group col-md-6">
+              <label for="phone">Phone</label>
+              <input name="phone" type="text" class="form-control" id="phone" placeholder="Your phone number" required>
+            </div>
+            <div class="form-group col-md-6">
+               <!-- <input type="file" multiple name="pictures" id="pictures" class="form-control"  required/> -->
+               <button id="upload_widget" class="mt-3 btn btn-primary text-center">Click to Upload Photos</button>
+
+              <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+              <script type="text/javascript">
+              var myWidget = cloudinary.createUploadWidget({
+                cloudName: 'hecqc9xf4',
+                uploadPreset: 'jlxekkor'}, (error, result) => {
+                  if (!error && result && result.event === "success") {
+                    console.log('Done! Here is the image info: ', result.info);
+                  }
+                }
+              )
+
+              document.getElementById("upload_widget").addEventListener("click", function(){
+                  myWidget.open();
+                }, false);
+              </script>
+            </div>
+          </div>
+
+
+
+              <div class="col-md-12 mt-3" id="faq_section">
+                <label for="faqs">Answer Frequently Asked Questions</label> <i onclick="addFAQ()" style="font-size:35px;" data-toggle="tooltip" data-placement="top" title="Add a FAQ" class="pull-right text-danger fa fa-plus-circle"></i>
+                <input name="faqs" type="text" class="form-control" placeholder="Question:">
+                <textarea name="faqanswers" class="form-control" rows="3" placeholder="Answer..."></textarea>
+              </div>
+
+
+                <div class="col-md-12">
+                  <div class="form-check text-center mt-3">
+                    <input type="checkbox" class="form-check-input" required>
+                    <label class="form-check-label" >I agree to the terms of service <a href="{% url 'terms' %}"><i data-toggle="tooltip" data-placement="top" title="Terms of Service page" class="ml-2 fa fa-info-circle"></i></a></label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Add the button type / price plan -->
+              <input type="text" class="invisible" name="pricePlan" id="pricePlan">
+
+
+             <div class="col-md-12 text-center">
+              <button type="submit" style="margin-top:-5%;" class="text-center btn btn-primary btn-lg">Submit Your Listing</button>
+           </div>
+
+
+          </form>
+
+
+        </div>
+       <!-- <a href="" class="btn btn-primary has-shadow has-wide-padding">View More </a> -->
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+     <script>
+
+       function addFAQ(){
+          var target = document.getElementById('faq_section');
+          var clonedTarget = target.cloneNode(true);
+          target.parentNode.insertBefore(clonedTarget, target);
+       }
+     </script>
+
+    <!-- Success message -->
+      {% if new_listing %}
+        <script>
+        myfunc();
+
+          function myfunc(){
+            window.alert('Your listing was submitted for approval! We will be in touch shortly. Thank you so much for listing with us!')
+          }
+        </script>
+      {% endif %}
+
+
+    <!-- Retrieve the button stored in local storage and add it to the form field id-->
+    <script>
+      var retrievedObject = localStorage.getItem('button');
+      document.getElementById('pricePlan').value = retrievedObject;
+    </script>
+
+
+
+{% endblock content %}
