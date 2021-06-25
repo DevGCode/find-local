@@ -12,9 +12,6 @@ urlpatterns = [
     path('index-search/', index_search, name='index-search'),
     path('search/', search, name='search'),
     path('user-profile/', user_profile, name='user-profile'),
-    path('user-billing/', user_billing, name='user-billing'),
-    path('user-reports/', user_reports, name='user-reports'),
-    path('user-support/', user_support, name='user-support'),
     path('user-listings/', user_listings, name='user-listings'),
     # blog
     path('search/', search, name='search'),
@@ -23,10 +20,7 @@ urlpatterns = [
     path('listing/<pk>/', listing_detail, name='listing-detail'),
     path('listings', listings, name='listings'),
     path('contact/', contact, name='contact'),
-    # terms & privacy
-    path('terms/', terms, name='terms'),
-    path('privacy/', privacy, name='privacy'),
-    path('spam/', spam, name='spam'),
+    path('all-listings/', all_listings, name='all-listings'),
     # new listing
     path('prices/', prices, name='prices'),
     path('submit-listing/', submit_listing, name='submit-listing'),

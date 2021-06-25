@@ -1,0 +1,53 @@
+{% extends 'theapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+    <!-- Hero Section-->
+    <section id="estimatePhoto" class="hero">
+      <div class="container">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active">All Listings</li>
+        </ul>
+        <h1>See All Listings</h1>
+
+      </div>
+    </section>
+
+
+<!-- All Listings-->
+    <div class="mt-5">
+      <div class="container">
+
+        <div class="listings">
+          <div class="row">
+        {% for listing in listings %}
+        <!-- start item-->
+        <div class="col-lg-6">
+          <div class="item listing-item" style="box-shadow: 10px 5px 5px #ddd;">
+            <div class="item-inner">
+              <div class="image"><img src="{{ listing.imageURL }}" alt="..." class="img-fluid"></div>
+              <div class="info d-flex align-items-end justify-content-between">
+                <div><a href="#" class="badge-transparent">{{ listing.category.title }}</a>
+                  <h3><a href="{% url 'listing-detail' listing.id %}">  {{ listing.title }}</a></h3>
+                  <p class="address text-light">{{ listing.city }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="description">
+              <p>{{ listing.tagline }} </p><a class="text-primary" href="{% url 'listing-detail' listing.id %}">Read more</a>
+            </div>
+          </div>
+        </div>
+        <!-- end item -->
+        {% endfor %}
+
+</div>
+</div>
+</div>
+
+
+
+    {% endblock content %}

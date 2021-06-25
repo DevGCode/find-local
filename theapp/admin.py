@@ -17,7 +17,6 @@ admin.site.register(PostView)
 admin.site.register(FrequentlyAskedQuestion)
 admin.site.register(BusinessCategory)
 admin.site.register(BusinessListing)
-admin.site.register(Image)
 admin.site.register(BusinessHours)
 admin.site.register(BusinessLocation)
 #Marketing

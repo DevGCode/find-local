@@ -1,5 +1,4 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from datetime import datetime, date
 from ckeditor.fields import RichTextField
 from django.contrib.auth import get_user_model
@@ -34,20 +33,19 @@ class BusinessListing(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(BusinessCategory, on_delete=models.CASCADE)
     title = models.CharField(max_length=220)
-    tagline = models.CharField(max_length=2320)
+    tagline = models.CharField(max_length=200)
     description = RichTextField(default=False)
     # address used for full address
-    address = models.CharField(max_length=2320)
+    address = models.CharField(max_length=200)
     # city/state used for filtering
     state = models.ForeignKey(BusinessLocation, on_delete=models.CASCADE, default=DEFAULT_LOCATION_ID)
-    phone = PhoneNumberField(
-        help_text='Must include international prefix - e.g. +1 555 555 55555'
-    )
-    url = models.CharField(max_length=2220)
+    phone = models.CharField(max_length=50)
+    url = models.CharField(max_length=500)
     # added manually on approval
     thumbnail = models.ImageField()
     published = models.BooleanField(default=False)
     claimed = models.BooleanField(default=False)
+    # plan type is saved for billing purposes
     plan = models.CharField(max_length=100)
 
 
@@ -71,16 +69,8 @@ class BusinessListing(models.Model):
 
 
 class BusinessHours(models.Model):
-    monday_open = models.CharField(max_length=220)
-    monday_closed = models.CharField(max_length=220)
-    tuesday_open = models.CharField(max_length=220)
-    tuesday_closed = models.CharField(max_length=220)
-    wednesday_open = models.CharField(max_length=220)
-    wednesday_closed = models.CharField(max_length=220)
-    thursday_open = models.CharField(max_length=220)
-    thursday_closed = models.CharField(max_length=220)
-    friday_open = models.CharField(max_length=220)
-    friday_closed = models.CharField(max_length=220)
+    m_f_open = models.CharField(max_length=220)
+    m_f_closed = models.CharField(max_length=220)
     saturday_open = models.CharField(max_length=220)
     saturday_closed = models.CharField(max_length=220)
     sunday_open = models.CharField(max_length=220)
@@ -94,7 +84,6 @@ class BusinessHours(models.Model):
 
 class Image(models.Model):
     listing = models.ForeignKey(BusinessListing, on_delete=models.CASCADE)
-    # image = models.ImageField(blank=True, upload_to='images/')
     image = models.ImageField()
 
     def __str__(self):
@@ -187,9 +176,7 @@ class Lead(models.Model):
     business_name = models.CharField(max_length=100)
     business_type = models.CharField(max_length=100)
     url = models.CharField(max_length=500)
-    phone_number = PhoneNumberField(
-        help_text='Must be international format eg: +1 555 555 55555'
-    )
+    phone_number = models.CharField(max_length=50)
     note = models.TextField(help_text='Notes')
     # Time they became a lead
     timestamp = models.DateTimeField(auto_now_add=True)

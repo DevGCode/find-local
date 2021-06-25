@@ -24,30 +24,16 @@ import json
 
 class UserSignupView(generic.CreateView):
     form_class = UserCreationForm
-    template_name = 'registration/signup.html'
+    template_name = 'theapp/signup.html'
     success_url = reverse_lazy('home')
 
 
 
 class UpdateListingView(UpdateView):
     model = BusinessListing
-    template_name = 'user/user_listing_edit.html'
+    template_name = 'theapp/user/user_listing_edit.html'
     fields = '__all__'
 
-
-
-def terms(request):
-    return render(request, 'compliance/terms_of_service.html', {})
-
-
-
-def privacy(request):
-    return render(request, 'compliance/privacy_policy.html', {})
-
-
-
-def spam(request):
-    return render(request, 'compliance/anti_spam.html', {})
 
 
 
@@ -61,49 +47,8 @@ def user_profile(request):
         'nav_categories':nav_categories,
     }
 
-    return render(request, 'user/profile.html', context)
+    return render(request, 'theapp/user/profile.html', context)
 
-
-
-@login_required
-def user_billing(request):
-    nav_categories = BusinessCategory.objects.all()
-    nav_locations = BusinessLocation.objects.all()
-
-    context = {
-        'nav_locations':nav_locations,
-        'nav_categories':nav_categories,
-    }
-
-    return render(request, 'user/billing.html', context)
-
-
-
-@login_required
-def user_reports(request):
-    nav_categories = BusinessCategory.objects.all()
-    nav_locations = BusinessLocation.objects.all()
-
-    context = {
-        'nav_locations':nav_locations,
-        'nav_categories':nav_categories,
-    }
-
-    return render(request, 'user/reports.html', context)
-
-
-
-@login_required
-def user_support(request):
-    nav_categories = BusinessCategory.objects.all()
-    nav_locations = BusinessLocation.objects.all()
-
-    context = {
-        'nav_locations':nav_locations,
-        'nav_categories':nav_categories,
-    }
-
-    return render(request, 'user/support.html', context)
 
 
 
@@ -120,7 +65,7 @@ def user_listings(request):
             'nav_categories':nav_categories,
         }
 
-        return render(request, 'user/listings.html', context)
+        return render(request, 'theapp/user/listings.html', context)
 
     context = {
         'listings':listings,
@@ -128,7 +73,7 @@ def user_listings(request):
         'nav_categories':nav_categories,
     }
 
-    return render(request, 'user/listings.html', context)
+    return render(request, 'theapp/user/listings.html', context)
 
 
 
@@ -142,7 +87,7 @@ def signin(request):
             return redirect('user-profile')
         else:
             messages.info(request,"Username or Password is not correct.")
-    return render(request, 'registration/signin.html',{})
+    return render(request, 'theapp/signin.html',{})
 
 
 
@@ -161,7 +106,7 @@ def contact(request):
         message = request.POST['message']
 
 
-        send_mail(message_name + ' - You got a new contact form submission -' + message_url, message, message_email, ['ottomalerr@gmail.com'])
+        #send_mail(message_name + ' - You got a new contact form submission -' + message_url, message, message_email, ['email@email.com'])
 
         nav_categories = BusinessCategory.objects.all()
         nav_locations = BusinessLocation.objects.all()
@@ -173,7 +118,7 @@ def contact(request):
         'message_name':message_name
         }
 
-        return render(request, 'contact.html', context)
+        return render(request, 'theapp/contact.html', context)
     else:
         nav_categories = BusinessCategory.objects.all()
         nav_locations = BusinessLocation.objects.all()
@@ -182,7 +127,7 @@ def contact(request):
             'nav_locations':nav_locations,
             'nav_categories':nav_categories,
         }
-        return render(request, 'contact.html', context)
+        return render(request, 'theapp/contact.html', context)
 
 
 
@@ -198,21 +143,16 @@ def submit_listing(request):
         description = request.POST['description']
         phone = request.POST['phone']
         plan = request.POST['pricePlan']
+        state = request.POST['state']
+        state = BusinessLocation.objects.get(id=int(state))
+        thumbnail = request.FILES['thumbnail']
 
         # Get the opening hours
-        mondayopen = request.POST['mondayopen']
-        tuesdayopen = request.POST['tuesdayopen']
-        wednesdayopen = request.POST['wednesdayopen']
-        thursdayopen = request.POST['thursdayopen']
-        fridayopen = request.POST['fridayopen']
+        m_f_open = request.POST['m_f_open']
         saturdayopen = request.POST['saturdayopen']
         sundayopen = request.POST['sundayopen']
         # Get the closing hours
-        mondayclosed = request.POST['mondayclosed']
-        tuesdayclosed = request.POST['tuesdayclosed']
-        wednesdayclosed = request.POST['wednesdayclosed']
-        thursdayclosed = request.POST['thursdayclosed']
-        fridayclosed = request.POST['fridayclosed']
+        m_f_closed = request.POST['m_f_closed']
         saturdayclosed = request.POST['saturdayclosed']
         sundayclosed = request.POST['sundayclosed']
 
@@ -234,31 +174,22 @@ def submit_listing(request):
         title=title,
         phone=phone,
         plan=plan,
+        published=True,
+        claimed=True,
+        state=state,
+        thumbnail=thumbnail,
         )
 
         # Store the hours
         new_hours = BusinessHours.objects.create(
-        monday_open=mondayopen,
-        monday_closed=mondayclosed,
-        tuesday_open=tuesdayopen,
-        tuesday_closed=tuesdayclosed,
-        wednesday_open=wednesdayopen,
-        wednesday_closed=wednesdayclosed,
-        thursday_open=thursdayopen,
-        thursday_closed=thursdayclosed,
-        friday_open=fridayopen,
-        friday_closed=fridayclosed,
+        m_f_open=m_f_open,
+        m_f_closed=m_f_closed,
         saturday_open=saturdayopen,
         saturday_closed=saturdayclosed,
         sunday_open=sundayopen,
         sunday_closed=sundayclosed,
         listing=new_listing,
         )
-
-        # Store the image and associate with the listing
-        # files = request.POST.getlist('pictures')
-        # for f in files:
-        #     Image.objects.create(listing=new_listing, image=f)
 
         # Store the faqs
         faqs = request.POST.getlist('faqs')
@@ -270,29 +201,33 @@ def submit_listing(request):
             FrequentlyAskedQuestion.objects.create(listing=new_listing, question=faq, answer=faqanswers[i])
             i += 1
 
-
         nav_categories = BusinessCategory.objects.all()
         nav_locations = BusinessLocation.objects.all()
 
+        states = BusinessLocation.objects.all()
 
         context = {
+        'states':states,
         'new_listing':new_listing,
         'nav_locations':nav_locations,
         'nav_categories':nav_categories,
         }
 
-        send_mail(title + '- Submitted a new Business Listing! - ' + phone, address, title, ['ottomalerr@gmail.com'])
+        #send_mail(title + '- Submitted a new Business Listing! - ' + phone, address, title, ['email@email.com'])
 
-        return render(request, 'submit-listing.html', context)
-    else:
-        nav_categories = BusinessCategory.objects.all()
-        nav_locations = BusinessLocation.objects.all()
+        return render(request, 'theapp/submit-listing.html', context)
 
-        context = {
-            'nav_locations':nav_locations,
-            'nav_categories':nav_categories,
-        }
-        return render(request, 'submit-listing.html', context)
+    nav_categories = BusinessCategory.objects.all()
+    nav_locations = BusinessLocation.objects.all()
+
+    states = BusinessLocation.objects.all()
+
+    context = {
+        'states':states,
+        'nav_locations':nav_locations,
+        'nav_categories':nav_categories,
+    }
+    return render(request, 'theapp/submit-listing.html', context)
 
 
 
@@ -305,7 +240,7 @@ def prices(request):
         'nav_categories':nav_categories,
     }
 
-    return render(request, 'prices.html', context)
+    return render(request, 'theapp/prices.html', context)
 
 
 
@@ -337,7 +272,7 @@ def category_detail(request, cats):
         'nav_categories':nav_categories,
     }
 
-    return render(request, 'category.html', context)
+    return render(request, 'theapp/category.html', context)
 
 
 
@@ -365,7 +300,7 @@ def location_detail(request, cats):
         'nav_categories':nav_categories,
     }
 
-    return render(request, 'location.html', context)
+    return render(request, 'theapp/location.html', context)
 
 
 
@@ -391,7 +326,7 @@ def post_category_detail(request, cats):
         'nav_categories':nav_categories,
     }
 
-    return render(request, 'post-category.html', context)
+    return render(request, 'theapp/post-category.html', context)
 
 
 
@@ -401,19 +336,16 @@ def listing_detail(request, pk):
     nav_categories = BusinessCategory.objects.all()
     nav_locations = BusinessLocation.objects.all()
 
-    business_listings = BusinessListing.objects.all()
+    business_listings = BusinessListing.objects.all()[:4]
 
     images = Image.objects.filter(listing=listing)
 
     hours = BusinessHours.objects.get(listing=listing)
 
-    header_image = images[0]
-
-    faqs = FrequentlyAskedQuestion.objects.all().filter(listing=listing)
+    faqs = FrequentlyAskedQuestion.objects.filter(listing=listing)
 
     context = {
         'faqs':faqs,
-        'header_image':header_image,
         'images':images,
         'hours':hours,
         'business_listings':business_listings,
@@ -422,7 +354,7 @@ def listing_detail(request, pk):
         'nav_categories':nav_categories,
     }
 
-    return render(request, 'listing.html', context)
+    return render(request, 'theapp/listing.html', context)
 
 
 
@@ -437,7 +369,7 @@ def listings(request):
         'nav_locations':nav_locations,
         'nav_categories':nav_categories,
     }
-    return render(request, 'all-listings.html', context)
+    return render(request, 'theapp/all-listings.html', context)
 
 
 
@@ -458,7 +390,7 @@ def post_detail(request, pk):
         'nav_categories':nav_categories,
         # 'category_count': category_count,
     }
-    return render(request, 'post.html', context)
+    return render(request, 'theapp/post.html', context)
 
 
 
@@ -476,55 +408,8 @@ def posts(request):
         'nav_locations':nav_locations,
         'nav_categories':nav_categories,
     }
-    return render(request, 'blog.html', context)
+    return render(request, 'theapp/blog.html', context)
 
-
-
-# def search(request):
-#     if request.method == 'POST': # check post
-#         form = SearchForm(request.POST)
-#         if form.is_valid():
-#             query = form.cleaned_data['query'] # get form input data
-#             catid = form.cleaned_data['catid']
-#             if catid==0:
-#                 products=Product.objects.filter(title__icontains=query)  #SELECT * FROM product WHERE title LIKE '%query%'
-#             else:
-#                 products = Product.objects.filter(title__icontains=query,category_id=catid)
-
-#             category = Category.objects.all()
-
-#             nav_categories = BusinessCategory.objects.all()
-#             nav_locations = BusinessLocation.objects.all()
-
-#             context = {
-#                 'products': products,
-#                 'query':query,
-#                 'category': category,
-#                 'nav_locations':nav_locations,
-#                 'nav_categories':nav_categories,
-#                 }
-#             return render(request, 'search_products.html', context)
-
-#     return HttpResponseRedirect('/')
-
-
-# def search_auto(request):
-#     if request.is_ajax():
-#         q = request.GET.get('term', '')
-#         products = Product.objects.filter(title__icontains=q)
-
-#         results = []
-#         for rs in products:
-#             product_json = {}
-#             product_json = rs.title +" > " + rs.category.title
-#             results.append(product_json)
-#         data = json.dumps(results)
-#     else:
-#         data = 'fail'
-#     mimetype = 'application/json'
-#     return HttpResponse(data, mimetype)
-
-# form = EmailSignupForm()
 
 
 
@@ -554,7 +439,7 @@ class SearchView(View):
             'nav_locations':nav_locations,
             'nav_categories':nav_categories,
         }
-        return render(request, 'search_results.html', context)
+        return render(request, 'theapp/search_results.html', context)
 
 
 
@@ -571,7 +456,7 @@ def index_search(request):
 
 
             context = {'category': category, 'location':location }
-            return render(request, 'results.html', context)
+            return render(request, 'theapp/results.html', context)
 
     return HttpResponseRedirect('/')
 
@@ -594,7 +479,7 @@ def search(request):
         'nav_locations':nav_locations,
         'nav_categories':nav_categories,
     }
-    return render(request, 'search_results.html', context)
+    return render(request, 'theapp/search_results.html', context)
 
 
 
@@ -608,7 +493,6 @@ def get_category_count():
 
 
 class IndexView(View):
-    # form = EmailSignupForm()
 
     def get(self, request, *args, **kwargs):
         nav_categories = BusinessCategory.objects.all()
@@ -617,7 +501,7 @@ class IndexView(View):
         business_categories = BusinessCategory.objects.all()
         business_locations = BusinessLocation.objects.all()
 
-        business_listings = BusinessListing.objects.all()
+        business_listings = BusinessListing.objects.all()[:9]
 
         featured = Post.objects.filter(featured=True)
         latest = Post.objects.order_by('-timestamp')[0:3]
@@ -642,6 +526,12 @@ class IndexView(View):
         new_signup.save()
         messages.info(request, "Successfully subscribed")
         return redirect("home")
+
+
+def all_listings(request):
+    listings = BusinessListing.objects.all()
+    return render(request, 'theapp/listings.html', {'listings':listings})
+
 
 
 
@@ -702,7 +592,7 @@ def location_search(request):
             'location_listings':location_listings,
         }
 
-        return render(request, 'search_result_listings.html', context)
+        return render(request, 'theapp/search_result_listings.html', context)
 
 
 

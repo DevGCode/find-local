@@ -4,23 +4,6 @@
 {% block content %}
 
 
- <script>
-  $(function() {
-      $("#query").autocomplete({
-          source: "/search_auto/",
-          select: function (event, ui) { //item selected
-              AutoCompleteSelectHandler(event, ui)
-          },
-          minLength: 2,
-      });
-  });
-  function AutoCompleteSelectHandler(event, ui)
-  {
-      var selectedObj = ui.item;
-  }
-</script>
-
-
 
     <!-- Hero Section-->
     <section id="hero" class="hero d-flex align-items-center">
@@ -33,29 +16,6 @@
         {% include 'theapp/main-search.html' %}
       </div>
     </section>
-    <!-- Features Section-->
-    <!-- <section class="features bg-gray">
-      <div class="container text-center">
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="icon"><i class="icon-antique-pavilion"></i></div>
-            <h4 class="h5">300 Places</h4>
-          </div>
-          <div class="col-sm-3">
-            <div class="icon"><i class="icon-calendar"></i></div>
-            <h4 class="h5">150 Events</h4>
-          </div>
-          <div class="col-sm-3">
-            <div class="icon"><i class="icon-gallery"></i></div>
-            <h4 class="h5">700 Photos</h4>
-          </div>
-          <div class="col-sm-3">
-            <div class="icon"><i class="icon-list"></i></div>
-            <h4 class="h5">15 Categories</h4>
-          </div>
-        </div>
-      </div>
-    </section> -->
 
 
     <!-- About Section-->
@@ -130,7 +90,7 @@
 
 
 
-          <!-- New Listings Section-->
+   <!-- New Listings Section-->
     <section class="latest-listings">
       <div class="container">
         <header>
@@ -148,7 +108,6 @@
                   <h3><a href="{% url 'listing-detail' listing.id %}">  {{ listing.title }}</a></h3>
                   <p class="address text-light">{{ listing.city }}</p>
                 </div>
-                <!-- <div class="favorite"><i class="icon-heart"> </i></div> -->
               </div>
             </div>
             <div class="rate-box d-flex align-items-center">
@@ -161,6 +120,11 @@
             {% endif %}
           {% endfor %}
         </div>
+
+        <div class="mt-4 text-center">
+          <a href="{% url 'all-listings' %}" class="visit-blog btn-lg btn btn-primary has-shadow has-wide-padding">See All</a>
+        </div>
+
       </div>
     </section>
 
@@ -180,7 +144,7 @@
           <!-- Post-->
           {% for post in latest %}
           <div class="col-lg-4">
-            <div class="post">
+            <div class="post" style="height:440px;">
               <div class="image"><img src="{{ post.thumbnail.url }}" alt="..."></div>
               <div class="info d-flex align-items-end">
                 <div class="content">
@@ -198,14 +162,5 @@
     </section>
 
 
-
-    <script>
-     function lookupLocation(){
-      $.getJSON('https://geolocation-db.com/json/c0593a60-4159-11eb-80cd-db15f946225f', function(data) {
-        $('#query').attr('placeholder', data.city);
-        // window.alert(locationData);
-      });
-     }
-    </script>
 
     {% endblock content %}

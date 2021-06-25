@@ -12,7 +12,7 @@ SECRET_KEY = 'django-insecure-kf=brph&fj$&d_#1zykw+7%4f8&@1dfy2xly%*u9=pk*w1-r%3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['find-local.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'theapp',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -131,8 +132,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # EMAIL
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'ottomalerr@gmail.com'
-EMAIL_HOST_PASSWORD = 'asf938V(E*DLCM3pc8*()C@'
+EMAIL_HOST_USER = 'insertyouremail'
+EMAIL_HOST_PASSWORD = 'insertyourpassword'
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False
 

@@ -7,7 +7,7 @@
 
 
     <!-- Hero Section-->
-    <section style="background:linear-gradient(0deg, rgba(23, 21, 22, 0.562), rgba(44, 27, 38, 0.521)), url('{{ header_image.image.url }}') no-repeat;" class="hero listing-single-hero d-flex align-items-end">
+    <section style="height:420px; background:linear-gradient(0deg, rgba(23, 21, 22, 0.562), rgba(44, 27, 38, 0.521)), url('{{ listing.imageURL }}') no-repeat;" class="hero listing-single-hero d-flex align-items-end">
       <div class="container">
         <div class="content d-flex justify-content-between align-items-start flex-column flex-lg-row align-items-lg-end">
           <div class="heading-info">
@@ -28,16 +28,8 @@
             <br>
             <p>{{ listing.tagline }}</p>
             <div class="listing-rate d-flex align-items-center">
-              <!-- <ul class="rate list-inline">
-                <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                <li class="list-inline-item"><i class="fa fa-star"></i></li>
-                <li class="list-inline-item"><i class="fa fa-star"></i></li>
-              </ul><span class="reviewers">8 Reviews</span> -->
             </div>
           </div>
-          <!-- <div class="calltoactions"><a href=".add-review" class="btn btn-primary has-wide-padding link-scroll">Write a Review</a></div> -->
         </div>
       </div>
     </section>
@@ -51,25 +43,6 @@
             </header>
             <p>{{ listing.description|safe }}</p>
           </div>
-
-          <!-- Listing Gallery-->
-          <div class="block listing-gallery">
-            <header>
-              <h3 class="has-lines"><small>Gallery</small> Images from {{ listing.title }} </h3>
-            </header>
-            <div class="gallery row">
-
-             {% for img in images %}
-              <div class="mix col-lg-4 col-md-6">
-                <div class="item"><a href="{{ img }}" data-fancybox="gallery" class="image"><img src="{{ img }}" alt="..." class="img-fluid"></a></div>
-              </div>
-              {% empty %}
-              empty list!
-            {% endfor %}
-
-            </div>
-          </div>
-
 
 
 
@@ -106,9 +79,7 @@
 
 
 
-
-
-     <!-- Related Listings-->
+<!-- Related Listings-->
     <div class="block related-listings no-padding-top">
       <div class="container">
         <header>
@@ -118,7 +89,7 @@
           <div class="row">
         {% for listing in business_listings %}
         <!-- start item-->
-        <div class="col-lg-4">
+        <div class="col-lg-6">
           <div class="item listing-item" style="box-shadow: 10px 5px 5px #ddd;">
             <div class="item-inner">
               <div class="image"><img src="{{ listing.imageURL }}" alt="..." class="img-fluid"></div>
@@ -137,6 +108,7 @@
         <!-- end item -->
         {% endfor %}
 
+
           </div>
         </div>
       </div>
@@ -153,13 +125,9 @@
               <h3 class="has-lines"><small>Hours of Operation</small> {{ listing.title }} Hours </h3>
             </header>
             <div class="days">
-              <div class="day d-flex justify-content-between"><strong>Monday</strong><span>{{ hours.monday_open }} - {{ hours.monday_closed }}</span></div>
-              <div class="day d-flex justify-content-between"><strong>Tuesday</strong><span>{{ hours.tuesday_open }} - {{ hours.tuesday_closed }}</span></div>
-              <div class="day d-flex justify-content-between"><strong>Wednesday</strong><span>{{ hours.wednesday_open }} - {{ hours.wednesday_closed }}</span></div>
-              <div class="day d-flex justify-content-between"><strong>Thursday</strong><span>{{ hours.thursday_open }} - {{ hours.thursday_closed }}</span></div>
-              <div class="day d-flex justify-content-between"><strong>Friday</strong><span>{{ hours.friday_open }} - {{ hours.friday_closed }}</span></div>
-              <div class="day d-flex justify-content-between"><strong>Saturday</strong><span>{{ hours.saturday_open }} - {{ hours.saturday_closed }}</span></div>
-              <div class="day d-flex justify-content-between"><strong>Sunday</strong><span>{{ hours.sunday_open }} - {{ hours.sunday_closed }}</span></div>
+              <div class="day d-flex justify-content-between"><strong>Weekdays</strong><span>{{ hours.m_f_open }} - {{ hours.m_f_closed }}</span></div>
+              <div class="day d-flex justify-content-between"><strong>Saturday</strong><span>{% if hours.saturday_open == 'Closed' %} Closed {% else %} {{ hours.saturday_open }} - {{ hours.saturday_closed }}{% endif %}</span></div>
+              <div class="day d-flex justify-content-between"><strong>Sunday</strong><span>{% if hours.sunday_open == 'Closed' %} Closed {% else %} {{ hours.sunday_open }} - {{ hours.sunday_closed }}{% endif %}</span></div>
             </div>
           </div>
           {% endif %}
@@ -172,7 +140,7 @@
             <div class="info">
               <div class="item"><a href="tel:{{ listing.phone.as_international }}"><i class="fa fa-phone"></i> {{ listing.phone }}</a></div>
 
-              <div class="item"><a href="{{ listing.url }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-globe"></i> Visit {{ listing.business_name|title }}'s Website</a></div>
+              <div class="item"><a href="{{ listing.url }}" target="_blank" rel="noopener noreferrer"><i class="fa fa-globe"></i> Visit Website</a></div>
 
                   <br>
 
